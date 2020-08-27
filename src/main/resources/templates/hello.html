@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      <script type="text/javascript">
+      function UserAction() {
+    	    var xhttp = new XMLHttpRequest();
+    	    xhttp.onreadystatechange = function() {
+    	         if (this.readyState == 4 && this.status == 200) {
+    	             alert(this.responseText);
+    	         }
+    	    };
+    	    xhttp.open("POST", "Your Rest URL Here", true);
+    	    xhttp.setRequestHeader("Content-type", "application/json");
+    	    xhttp.send("http://localhost:8089/student");
+    	}
+      </script>
+    <head>
+        <title>Hello World!</title>
+    </head>
+    <body>
+        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+ <button type="submit" onclick="UserAction()">Search</button>
+}
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </body>
+</html>
